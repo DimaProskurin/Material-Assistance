@@ -20,6 +20,8 @@
     display: flex;
     flex: 0 0 72px;
 
+    margin: 10px;
+
     justify-content: center;
     align-items: center;
 
@@ -30,14 +32,10 @@
     border-bottom: 2px solid transparent;
 
 &:hover {
-        border-bottom: 2px solid rgba(#a700e9, 0.3);
+        border-bottom: 2px solid rgba(#FD5F00, 0.3);
     }
 }
 
-.link + .link {
-    border-left: 1px solid rgba(#a700e9, 0.1);
-}
-
 .linkActive {
-    border-bottom: 2px solid #a700e9;
+    border-bottom: 2px solid #FD5F00;
 }

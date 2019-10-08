@@ -3,4 +3,8 @@ export const STRUCTURE = {
         title: 'Главная',
         route: '/',
     },
+    history: {
+        title: 'История',
+        route: '/history',
+    },
 };
