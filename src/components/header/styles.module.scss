@@ -26,13 +26,14 @@
     align-items: center;
 
     color: white;
-    text-decoration: none;
+    text-decoration: none !important;
 
     transition: border-bottom-color 0.3s;
     border-bottom: 2px solid transparent;
 
 &:hover {
         border-bottom: 2px solid rgba(#FD5F00, 0.3);
+        color: rgba(#FFFFFF, 0.3);
     }
 }
 
