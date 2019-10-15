@@ -9,18 +9,14 @@ export class Avatar extends React.Component {
 
     render() {
         return (
-            <div className="col-md-6 col-xl-4">
-                <div className="card AvatarBlock-root mx-auto mb-4" style={{maxWidth: "300px", minWidth: "25vw"}}>
-                    <figure className="PictureElement-root PictureElement-rich">
-                        <picture>
-                            <img src={this.props.imageSrc} alt="no image, sry" />
-                        </picture>
-                    </figure>
+            <div className="card AvatarBlock-root">
+                <img className="card-img-top" src={this.props.imageSrc} alt="Card image cap"/>
                     <div className="card-body">
-                        <h4 className="card-title Title-root">{this.props.title}</h4>
-                        <p className="card-text BlockDescription-root">{this.props.description}</p>
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text"> {this.props.description}</p>
+                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                     </div>
-                </div>
+                <br/>
             </div>
         )
     }
