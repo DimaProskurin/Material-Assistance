@@ -8,19 +8,27 @@
     position: relative !important;
     min-width: calc(300px + 3vw) !important;
     max-width: calc(300px + 3vw)!important;
-    margin-top: 20px !important;
+    margin-bottom: 60px !important;
+    margin-left: 30px !important;
+    margin-right: 30px !important;
 }
 
+.card-title {
+    font-size: 30px;
+    font-weight: 700;
+}
 
-.card-text { height: 42px; overflow-x: scroll; width: 100%; }
+.card-text {
+    text-align: left;
+    font-size: 20px;
+    height: 42px;
+    width: 100%; }
 
 .card-text p { width: 650px; word-break: break-word; }
 
 .card-img-top {
     width: 100% !important;
-    height: calc(300px + 3vw) !important;
+    height: calc(212px + 3vw) !important;
     object-fit: cover;
     border-radius: 20px 20px 0 0 !important;
 }
-
-

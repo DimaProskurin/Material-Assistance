@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 const render = () => ReactDOM.render(
     <BrowserRouter>
-        <div>
+        <div style={{backgroundColor: "#fafbfc"}}>
             <Header/>
             <MainRouter/>
         </div>
