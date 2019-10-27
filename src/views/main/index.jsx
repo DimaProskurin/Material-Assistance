@@ -9,6 +9,9 @@ import {ItemList} from "../../components/compensations/itemList";
 import one from './one.jpg'
 import remont from './remont.png'
 import otherLogo from './other.jpg'
+import css from "../../components/header/styles.module.scss";
+import {NavLink} from "react-router-dom";
+import {List} from "../../components/compensations/list";
 
 export class App extends React.Component {
     render() {
@@ -18,15 +21,12 @@ export class App extends React.Component {
                     <br/>
                     <br/>
                     <div className="card-deck">
-                        <Avatar id={"1"} imageSrc={trainsLogo} title={"Title1"} description={"Description Description"} />
-                        <Avatar id={"3"} imageSrc={medicineLogo} title={"Title2"} description={"Description"} />
+                        <Avatar id={"standard"} imageSrc={trainsLogo} title={"Title1"} description={"Description Description"} />
+                        <Avatar id={"medicine"} imageSrc={medicineLogo} title={"Title2"} description={"Description"} />
                         <Avatar id={"4"} imageSrc={otherLogo} title={"Title3"} description={"Description"} />
                         <Avatar id={"5"} imageSrc={one} title={"Title4"} description={"Description"} />
                         <Avatar id={"6"} imageSrc={remont} title={"Title5"} description={"Description"} />
                     </div>
-                    <ItemList title={"Билеты"} description={"Чтобы подать на билеты, необходимы посадочные талоны."} />
-                    <ItemList title={"Лекарства"} description={"Чтобы подать на билеты, необходимы посадочные талоны."} />
-                    <ItemList title={"Разовая"} description={"Чтобы подать на билеты, необходимы посадочные талоны."} />
                     <br />
                     <br />
                 </header>
