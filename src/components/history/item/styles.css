@@ -9,6 +9,7 @@ container {
     width: 75vw !important;
     max-width: 75vw !important;
     min-width: calc(200px + 30vw) !important;
+    background-color: white;
 }
 
 container:last-child {

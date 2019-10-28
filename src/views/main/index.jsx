@@ -3,7 +3,7 @@ import logo from './grosul.png';
 import './styles.css';
 import {Avatar} from '../../components/main/avatar'
 import trainsLogo from './trains.png'
-import medicineLogo from './medecine.png'
+import medicineLogo from './vectorpaint.svg'
 import 'bootstrap/dist/css/bootstrap.css'
 import {ItemList} from "../../components/compensations/itemList";
 import one from './one.jpg'
@@ -13,6 +13,10 @@ import css from "../../components/header/styles.module.scss";
 import {NavLink} from "react-router-dom";
 import {List} from "../../components/compensations/list";
 import {HistoryItem} from "../../components/history/item";
+import standardImg from './standard.svg'
+import compensationImg from './toolsNew2.svg'
+import markImg from './markNew.svg'
+import alarmImg from './alarmNew.svg'
 
 export class App extends React.Component {
     render() {
@@ -22,11 +26,11 @@ export class App extends React.Component {
                     <br/>
                     <br/>
                     <div className="card-deck">
-                        <Avatar id={"standard"} imageSrc={trainsLogo} title={"Title1"} description={"Description Description"} />
-                        <Avatar id={"medicine"} imageSrc={medicineLogo} title={"Title2"} description={"Description"} />
-                        <Avatar id={"4"} imageSrc={otherLogo} title={"Title3"} description={"Description"} />
-                        <Avatar id={"5"} imageSrc={one} title={"Title4"} description={"Description"} />
-                        <Avatar id={"6"} imageSrc={remont} title={"Title5"} description={"Description"} />
+                        <Avatar id={"standard"} imageSrc={standardImg} title={"Стандартная"} description={"Билеты и одноразовая помощь"} />
+                        <Avatar id={"medicine"} imageSrc={medicineLogo} title={"Медицина"} description={"Лекарства, лечение и другое"} />
+                        <Avatar id={"4"} imageSrc={compensationImg} title={"Компенсации"} description={"Ремонт, военная форма и другое"} />
+                        <Avatar id={"5"} imageSrc={markImg} title={"Компенсация стипендии"} description={"Одна тройка? Не беда!"} />
+                        <Avatar id={"6"} imageSrc={alarmImg} title={"Другое"} description={"Ежемесячная помощь"} />
                     </div>
                     <br />
                     <br />

@@ -14,7 +14,12 @@ export class Avatar extends React.Component {
                 <NavLink
                     key={"keyName"}
                     to={'category/' + this.props.id}
-                    exact={true}>
+                    exact={true}
+                    style={{
+                        color: "inherit",
+                        textDecoration: "none",
+                    }}
+                >
                     <img className="card-img-top" src={this.props.imageSrc} alt="Card image cap"/>
                         <div className="card-body">
                             <h5 className="card-title">{this.props.title}</h5>
