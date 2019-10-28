@@ -12,6 +12,7 @@ import otherLogo from './other.jpg'
 import css from "../../components/header/styles.module.scss";
 import {NavLink} from "react-router-dom";
 import {List} from "../../components/compensations/list";
+import {HistoryItem} from "../../components/history/item";
 
 export class App extends React.Component {
     render() {

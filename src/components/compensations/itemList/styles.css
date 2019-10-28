@@ -7,8 +7,8 @@ dl {
 }
 
 .direction__item {
-    min-width: calc(300px + 30vw) !important;
-    max-width: calc(300px + 30vw)!important;
+    max-width: 75vw !important;
+    min-width: calc(200px + 30vw) !important;
     margin-bottom: 13px;
     padding: 16px 22px 10px 40px;
     border-radius: 50px;

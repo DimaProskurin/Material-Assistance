@@ -1,5 +1,7 @@
-/*still empty*/
-.MainPicture {
-    height: 50vh;
-    width: auto;
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
 }

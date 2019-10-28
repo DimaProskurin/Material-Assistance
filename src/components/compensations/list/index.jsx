@@ -10,7 +10,7 @@ export class List extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={"List"}>
                 {this.props.items.map((i) => i)}
             </div>
         )
