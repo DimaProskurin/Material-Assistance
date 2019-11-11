@@ -1,6 +1,15 @@
 .AvatarBlock-root {
     border: none !important;
     border-radius: 20px !important;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.10);
+
+    position: relative;
+    top: 0;
+    transition: top ease-in-out 0.2s;
+}
+
+.AvatarBlock-root:hover {
+    top: -10px;
     box-shadow: 0 5px 10px 0 rgba(0,0,0,.2);
 }
 
