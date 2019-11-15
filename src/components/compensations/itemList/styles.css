@@ -65,7 +65,7 @@ dl {
 }
 
 .direction__text {
-    margin-bottom: 45px;
+    margin-bottom: 25px;
     font-family: "circe-regular", sans-serif;
 }
 
@@ -91,4 +91,13 @@ p {
     font-size: 18px;
     line-height: 27px;
     margin-bottom: 30px;
+}
+
+.btnAddition {
+    font-size: 20px;
+    font-weight: 700;
+    width: 50%;
+    height: 60px;
+    border-radius: 20px;
+    margin-left: calc(25% - 9px);
 }

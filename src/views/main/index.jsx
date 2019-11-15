@@ -26,11 +26,10 @@ export class App extends React.Component {
                     <br/>
                     <br/>
                     <div className="card-deck">
-                        <Avatar id={"standard"} imageSrc={standardImg} title={"Стандартная"} description={"Билеты и одноразовая помощь"} />
+                        <Avatar id={"standard"} imageSrc={standardImg} title={"Стандартная"} description={"Билеты и разовая помощь"} />
                         <Avatar id={"medicine"} imageSrc={medicineLogo} title={"Медицина"} description={"Лекарства, лечение и другое"} />
-                        <Avatar id={"4"} imageSrc={compensationImg} title={"Компенсации"} description={"Ремонт, военная форма и другое"} />
-                        <Avatar id={"5"} imageSrc={markImg} title={"Компенсация стипендии"} description={"Одна тройка? Не беда!"} />
-                        <Avatar id={"6"} imageSrc={alarmImg} title={"Другое"} description={"Ежемесячная помощь"} />
+                        <Avatar id={"repairs"} imageSrc={compensationImg} title={"Обустройство"} description={"Ремонт и техника"} />
+                        <Avatar id={"other"} imageSrc={alarmImg} title={"Другое"} description={"Ежемесячная помощь, компенсация стипендии, военная форма"} />
                     </div>
                     <br />
                     <br />
