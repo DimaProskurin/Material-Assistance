@@ -17,6 +17,7 @@ import standardImg from './standard.svg'
 import compensationImg from './toolsNew2.svg'
 import markImg from './markNew.svg'
 import alarmImg from './alarmNew.svg'
+import {CompensationInfo} from "../../components/generator/compensation";
 
 export class App extends React.Component {
     render() {

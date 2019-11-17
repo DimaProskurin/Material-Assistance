@@ -2,6 +2,7 @@ import React from 'react'
 import './styles.css'
 import oneTime from './oneNew.svg'
 import ReactTooltip from 'react-tooltip'
+import {NavLink} from "react-router-dom";
 
 export class ItemList extends React.Component {
     constructor(props) {
@@ -24,17 +25,21 @@ export class ItemList extends React.Component {
                 <dt>{this.props.title}</dt>
                 <dd className={isOpened ? "isOpen" : ""}>
                     <div className="direction__text">
-                        <p style={{display: "flex", justifyContent: "space-between", borderBottomStyle: "dashed"}}>
-                            <div>
+                        <p style={{display: "flex", justifyContent: "space-between", alignItems: "center", borderBottomStyle: "dashed"}}>
+                            <div style={{marginBottom: "16px"}}>
                                 Размер:
-                                <ul>
-                                    {this.props.money.map((elem) =>
-                                        <li>{elem}</li>
-                                    )}
-                                </ul>
+                                {this.props.money.length > 1 ? (
+                                    <ul style={{margin: "0px"}}>
+                                        {this.props.money.map((elem) =>
+                                            <li>{elem}</li>
+                                        )}
+                                    </ul>
+                                ) : (
+                                    " " + this.props.money[0]
+                                )}
                             </div>
                             {this.props.isOnce ? (
-                                <div>
+                                <div style={{marginBottom: "16px"}}>
                                     <img src={oneTime} width={"40px"} alt={"Раз в семестр"} data-tip="Раз в семестр"/>
                                     <ReactTooltip place="right" type="dark" effect="solid"/>
                                 </div>
@@ -45,7 +50,7 @@ export class ItemList extends React.Component {
 
                         {docs.length > 0 ? (
                             <p>
-                                Требуемые документы:<br/>
+                                Требуется:<br/>
                                 <ul>
                                     {docs.map((elem) => <li>{elem}</li>)}
                                 </ul>
@@ -66,7 +71,16 @@ export class ItemList extends React.Component {
                         )}
                     </div>
                     <div>
-                        <button type="button" className="btn btn-dark btnAddition">Подать</button>
+                        <NavLink
+                            key={"keyName"}
+                            to={'/' + this.props.category + '/' + this.props.id}
+                            exact={true}
+                            style={{
+                                color: "inherit",
+                                textDecoration: "none",
+                            }}>
+                            <button type="button" className="btn btn-dark btnAddition">Подать</button>
+                        </NavLink>
                     </div>
                 </dd>
             </dl>
@@ -75,6 +89,8 @@ export class ItemList extends React.Component {
 }
 
 ItemList.propTypes = {
+    category: String,
+    id: String,
     title: String,
     isOnce: Boolean,
     money: Array,
@@ -83,6 +99,8 @@ ItemList.propTypes = {
 };
 
 ItemList.defaultProps = {
+    category: "defaultCategory",
+    id: "0",
     title: '',
     isOnce: false,
     money: [],
