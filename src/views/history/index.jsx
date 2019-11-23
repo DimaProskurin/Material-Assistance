@@ -1,8 +1,21 @@
 import React from 'react';
 import './styles.css'
 import {HistoryItem} from "../../components/history/item";
+import {fetchCategories} from "../../actions";
+import {connect} from "react-redux";
+import {App} from "../main";
 
 export class HistoryMain extends React.Component {
+    constructor(props) {
+        super(props);
+
+        if (Object.keys(this.props.categoryList).length === 0) {
+            alert('empty');
+        } else {
+            console.log(this.props.categoryList);
+        }
+    }
+
     render() {
         return (
             <div className={"list"}>
@@ -20,4 +33,14 @@ export class HistoryMain extends React.Component {
     }
 }
 
-export default HistoryMain;
+function mapStateToProps(state) {
+    return {
+        categoryList: state.categories.categories
+    }
+}
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryMain);
+
+// export default HistoryMain;
