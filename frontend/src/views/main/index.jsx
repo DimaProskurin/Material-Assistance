@@ -2,22 +2,25 @@ import React from 'react';
 import './styles.css';
 import {Avatar} from '../../components/main/avatar'
 import 'bootstrap/dist/css/bootstrap.css'
+import {connect} from 'react-redux'
+import {fetchCategories} from '../../actions/index'
+import {getCategoriesFromDB} from "../../utils";
 
 
 const BACK = 'http://127.0.0.1:8000/';
 
 
 export class App extends React.Component {
-    componentWillMount() {
-        fetch('http://127.0.0.1:8000/api/categories/')
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({data: data})
-            })
-            .catch(console.log)
+    constructor(props) {
+        super(props);
+
+        if (Object.keys(this.props.categoryList).length === 0) {
+            getCategoriesFromDB().then((categories) => this.props.fetchCategories(categories));
+        }
     }
+
     render() {
-        if(this.state) {
+        if(Object.keys(this.props.categoryList).length !== 0) {
             return (
                 <div className="App">
                     <header className="App-header">
@@ -25,7 +28,7 @@ export class App extends React.Component {
                         <br/>
                         <div className="card-deck">
                             {
-                                this.state.data.categories.map((category, index) =>
+                                this.props.categoryList.map((category, index) =>
                                     (<Avatar url={ category.url } imageSrc={ BACK + category.image } title={ category.name }
                                             description={ category.description }/>))
                             }
@@ -39,11 +42,23 @@ export class App extends React.Component {
             return (
                 <div className="App">
                     <header className="App-header">
-                        <p>ЗАГРУЗКА</p>
+                        <div className="spinner-border" style={{width: "5rem", height: "5rem", role: "status"}}>
+                            <span className="sr-only">Loading...</span>
+                        </div>
                     </header>
                 </div>
             );
     }
 }
 
-export default App;
+function mapStateToProps(state) {
+    return {
+        categoryList: state.categories.categories
+    }
+}
+
+const mapDispatchToProps = {
+    fetchCategories
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -5,14 +5,18 @@ import {BrowserRouter} from 'react-router-dom';
 import {Header} from "./components/header";
 import MainRouter from './routes';
 import * as serviceWorker from './serviceWorker';
+import initStore from "./store";
+import {Provider} from 'react-redux'
 
 const render = () => ReactDOM.render(
-    <BrowserRouter>
-        <div>
-            <Header/>
-            <MainRouter/>
-        </div>
-    </BrowserRouter>,
+    <Provider store={initStore()}>
+        <BrowserRouter>
+            <div>
+                <Header/>
+                <MainRouter/>
+            </div>
+        </BrowserRouter>
+    </Provider>,
     document.getElementById('root')
 );
 
