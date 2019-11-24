@@ -90,7 +90,7 @@ export class ItemList extends React.Component {
 
 ItemList.propTypes = {
     category: String,
-    id: String,
+    url: String,
     title: String,
     isOnce: Boolean,
     money: Array,
@@ -100,7 +100,7 @@ ItemList.propTypes = {
 
 ItemList.defaultProps = {
     category: "defaultCategory",
-    id: "0",
+    url: "",
     title: '',
     isOnce: false,
     money: [],

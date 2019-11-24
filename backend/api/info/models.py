@@ -10,6 +10,7 @@ class Category(models.Model):
 
 class Compensation(models.Model):
     name = models.CharField(max_length=64)
+    url = models.CharField(max_length=64, default='')
     money = models.TextField(max_length=1024)
     requirements = models.TextField(max_length=2048, blank=True)
     additional_info = models.TextField(max_length=2048, blank=True)
