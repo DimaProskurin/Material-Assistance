@@ -13,7 +13,7 @@ export class Avatar extends React.Component {
             <div className="card AvatarBlock-root">
                 <NavLink
                     key={"keyName"}
-                    to={'/' + this.props.id}
+                    to={'/' + this.props.url}
                     exact={true}
                     style={{
                         color: "inherit",
@@ -32,14 +32,14 @@ export class Avatar extends React.Component {
 }
 
 Avatar.propTypes = {
-    id: String,
+    url: String,
     imageSrc: String,
     title: String,
     description: String,
 };
 
 Avatar.defaultProps = {
-    id: '',
+    url: '',
     imageSrc: '',
     title: '',
     description: '',
