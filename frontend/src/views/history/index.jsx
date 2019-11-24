@@ -3,6 +3,10 @@ import './styles.css'
 import {HistoryItem} from "../../components/history/item";
 
 export class HistoryMain extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className={"list"}>
