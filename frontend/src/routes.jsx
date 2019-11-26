@@ -9,7 +9,7 @@ import {fetchCompensations} from "./actions";
 import {connect} from "react-redux";
 import {getCategoriesFromDB, getCompensations} from "./utils";
 
-// Аналогично CompensationList все пути должны генерироваться исходя из БД с текущими категориями и компенсациями
+
 export class MainRouter extends Component {
     constructor(props) {
         super(props)
@@ -23,9 +23,6 @@ export class MainRouter extends Component {
     }
 
     render() {
-        console.log(this.props.categoryList);
-        console.log(this.props.compensationList);
-
         return (
             <Switch>
                 <Route exact path='/' component={App}/>
@@ -41,41 +38,15 @@ export class MainRouter extends Component {
                     )
                 }
 
-                <Route exact path='/standard/tickets'>
-                    <Generator compensationUrl={"tickets"}/>
-                </Route>
+                {
+                    this.props.compensationList.map((compensation, index) => (
+                            <Route exact path={'/' + compensation.category_url + '/' + compensation.url}>
+                                <Generator compensationUrl={compensation.url}/>
+                            </Route>
+                        )
+                    )
+                }
 
-                <Route exact path='/standard/onetime'>
-                    <Generator compensationUrl={"onetime"}/>
-                </Route>
-
-                <Route exact path='/medicine/drugs'>
-                    <Generator compensationUrl={"drugs"} />
-                </Route>
-
-                <Route exact path='/medicine/doctors'>
-                    <Generator compensationUrl={"doctors"} />
-                </Route>
-
-                <Route exact path='/medicine/operations'>
-                    <Generator compensationUrl={"operations"} />
-                </Route>
-
-                <Route exact path='/medicine/equipment'>
-                    <Generator compensationUrl={"equipment"} />
-                </Route>
-
-                <Route exact path='/medicine/teeth'>
-                    <Generator compensationUrl={"teeth"} />
-                </Route>
-
-                <Route exact path='/medicine/blood'>
-                    <Generator compensationUrl={"blood"} />
-                </Route>
-
-                <Route exact path='/medicine/document'>
-                    <Generator compensationUrl={"document"} />
-                </Route>
             </Switch>
         );
     }

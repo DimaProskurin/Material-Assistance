@@ -25,7 +25,9 @@ export class CompensationList extends React.Component {
             return (
                 <div className="Block">
                     <List items={
-                        this.props.compensationList.map((compensation, index) =>
+                        this.props.compensationList
+                            .filter(compensation => compensation.category_url === this.props.categoryUrl)
+                            .map((compensation, index) =>
                             (<ItemList categoryUrl={ this.props.categoryUrl }
                                        id={ compensation.url }
                                        title={compensation.name}

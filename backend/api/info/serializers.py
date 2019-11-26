@@ -15,3 +15,5 @@ class CompensationSerializer(serializers.Serializer):
     requirements = serializers.CharField(max_length=2048)
     additional_info = serializers.CharField(max_length=2048)
     once_a_term = serializers.BooleanField(default=False)
+    category_url = serializers.CharField(max_length=64)
+
