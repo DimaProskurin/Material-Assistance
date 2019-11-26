@@ -3,11 +3,11 @@ import { Route, Switch, withRouter } from 'react-router';
 import App from "./views/main/index";
 import HistoryMain from "./views/history";
 import {CompensationList} from "./views/compensationList";
-import {CompensationInfo} from "./components/generator/compensation";
-import {InputBlock} from "./components/generator/input";
-import {ItemList} from "./components/compensations/itemList";
 import {Generator} from "./views/generator";
-import {Avatar} from "./components/main/avatar";
+import {fetchCategories} from "./actions";
+import {fetchCompensations} from "./actions";
+import {connect} from "react-redux";
+import {getCategoriesFromDB, getCompensations} from "./utils";
 
 // Аналогично CompensationList все пути должны генерироваться исходя из БД с текущими категориями и компенсациями
 export class MainRouter extends Component {
@@ -15,46 +15,84 @@ export class MainRouter extends Component {
         super(props)
     }
 
+    componentDidMount() {
+        if (this.props.categoryList.length === 0 || this.props.compensationList.length === 0) {
+            getCategoriesFromDB().then((categories) => this.props.fetchCategories(categories));
+            getCompensations().then((compensations) => this.props.fetchCompensations(compensations));
+        }
+    }
+
     render() {
+        console.log(this.props.categoryList);
+        console.log(this.props.compensationList);
+
         return (
             <Switch>
                 <Route exact path='/' component={App}/>
+
                 <Route exact path='/history' component={HistoryMain}/>
 
-                <Route exact path='/standard'>
-                    <CompensationList category={'standard'}/>
+                {
+                    this.props.categoryList.map((category, index) => (
+                            <Route exact path={'/' + category.url}>
+                                <CompensationList categoryUrl={category.url}/>
+                            </Route>
+                        )
+                    )
+                }
+
+                <Route exact path='/standard/tickets'>
+                    <Generator compensationUrl={"tickets"}/>
                 </Route>
 
-                <Route exact path='/medicine'>
-                    <CompensationList category={'medicine'}/>
+                <Route exact path='/standard/onetime'>
+                    <Generator compensationUrl={"onetime"}/>
                 </Route>
 
-                <Route exact path='/repairs'>
-                    <CompensationList category={'repairs'}/>
+                <Route exact path='/medicine/drugs'>
+                    <Generator compensationUrl={"drugs"} />
                 </Route>
 
-                <Route exact path='/other'>
-                    <CompensationList category={'other'}/>
+                <Route exact path='/medicine/doctors'>
+                    <Generator compensationUrl={"doctors"} />
                 </Route>
 
-                <Route path='/standard/'>
-                    <Generator/>
+                <Route exact path='/medicine/operations'>
+                    <Generator compensationUrl={"operations"} />
                 </Route>
 
-                <Route path='/medicine/'>
-                    <Generator/>
+                <Route exact path='/medicine/equipment'>
+                    <Generator compensationUrl={"equipment"} />
                 </Route>
 
-                <Route path='/repairs/'>
-                    <Generator/>
+                <Route exact path='/medicine/teeth'>
+                    <Generator compensationUrl={"teeth"} />
                 </Route>
 
-                <Route path='/other/'>
-                    <Generator/>
+                <Route exact path='/medicine/blood'>
+                    <Generator compensationUrl={"blood"} />
+                </Route>
+
+                <Route exact path='/medicine/document'>
+                    <Generator compensationUrl={"document"} />
                 </Route>
             </Switch>
         );
     }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        categoryList: state.fetch.categories,
+        compensationList: state.fetch.compensations
+    };
+};
+
+const mapDispatchToProps = {
+    fetchCategories,
+    fetchCompensations,
+};
+
+MainRouter = connect(mapStateToProps, mapDispatchToProps)(MainRouter);
 
 export default withRouter(MainRouter);

@@ -10,7 +10,7 @@ export class HistoryItem extends React.Component {
 
     render() {
         return(
-            <container>
+            <containerClass>
                 <span className={"compensationTitle"}>
                     {this.props.compensation}
                 </span>
@@ -24,7 +24,7 @@ export class HistoryItem extends React.Component {
                         <small className="text-muted">{this.props.date}</small>
                     </div>
                 </span>
-            </container>
+            </containerClass>
         )
     }
 }

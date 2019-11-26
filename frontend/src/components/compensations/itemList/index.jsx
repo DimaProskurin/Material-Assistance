@@ -73,7 +73,7 @@ export class ItemList extends React.Component {
                     <div>
                         <NavLink
                             key={"keyName"}
-                            to={'/' + this.props.category + '/' + this.props.id}
+                            to={'/' + this.props.categoryUrl + '/' + this.props.id}
                             exact={true}
                             style={{
                                 color: "inherit",
@@ -89,7 +89,7 @@ export class ItemList extends React.Component {
 }
 
 ItemList.propTypes = {
-    category: String,
+    categoryUrl: String,
     url: String,
     title: String,
     isOnce: Boolean,
@@ -99,7 +99,7 @@ ItemList.propTypes = {
 };
 
 ItemList.defaultProps = {
-    category: "defaultCategory",
+    categoryUrl: "defaultCategory",
     url: "",
     title: '',
     isOnce: false,

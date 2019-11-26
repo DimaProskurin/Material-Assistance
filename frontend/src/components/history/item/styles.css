@@ -1,4 +1,4 @@
-container {
+containerClass {
     display: flex;
     justify-content: space-between;
     padding: 15px 30px;
@@ -12,11 +12,11 @@ container {
     background-color: white;
 }
 
-container:last-child {
+containerClass:last-child {
     border: 0;
 }
 
-container:hover {
+containerClass:hover {
     background-color: #dddddd;
 }
 

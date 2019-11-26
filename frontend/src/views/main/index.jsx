@@ -13,14 +13,16 @@ const BACK = 'http://127.0.0.1:8000/';
 export class App extends React.Component {
     constructor(props) {
         super(props);
+    }
 
-        if (Object.keys(this.props.categoryList).length === 0) {
+    componentDidMount() {
+        if (this.props.categoryList.length === 0) {
             getCategoriesFromDB().then((categories) => this.props.fetchCategories(categories));
         }
     }
 
     render() {
-        if(Object.keys(this.props.categoryList).length !== 0) {
+        if (this.props.categoryList.length !== 0) {
             return (
                 <div className="App">
                     <header className="App-header">
@@ -53,7 +55,7 @@ export class App extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        categoryList: state.categories.categories
+        categoryList: state.fetch.categories
     }
 }
 
