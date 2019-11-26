@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.css'
 import {HistoryItem} from "../../components/history/item";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 export class HistoryMain extends React.Component {
     constructor(props) {
@@ -9,6 +10,11 @@ export class HistoryMain extends React.Component {
 
     render() {
         return (
+            <ReactCSSTransitionGroup
+                transitionName="fade"
+                transitionAppear={true}
+                transitionAppearTimeout={400}
+            >
             <div className={"list"}>
                 <HistoryItem compensation={"Билеты"} money={"5 550,00"} date={"Ноябрь"} />
                 <HistoryItem compensation={"Лекарства"} money={"3 120,13"} date={"Октябрь"} />
@@ -20,6 +26,7 @@ export class HistoryMain extends React.Component {
                 <HistoryItem compensation={"Билеты"} money={"1 200,00"} date={"Июнь"} />
                 <HistoryItem compensation={"Шоколадка"} money={"500,00"} date={"Июнь"} />
             </div>
+            </ReactCSSTransitionGroup>
         );
     }
 }

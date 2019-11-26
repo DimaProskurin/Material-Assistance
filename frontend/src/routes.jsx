@@ -3,68 +3,67 @@ import { Route, Switch, withRouter } from 'react-router';
 import App from "./views/main/index";
 import HistoryMain from "./views/history";
 import {CompensationList} from "./views/compensationList";
-import {CompensationInfo} from "./components/generator/compensation";
-import {InputBlock} from "./components/generator/input";
-import {ItemList} from "./components/compensations/itemList";
 import {Generator} from "./views/generator";
-import {Avatar} from "./components/main/avatar";
+import {fetchCategories} from "./actions";
+import {fetchCompensations} from "./actions";
+import {connect} from "react-redux";
+import {getCategoriesFromDB, getCompensations} from "./utils";
 
-// Аналогично CompensationList все пути должны генерироваться исходя из БД с текущими категориями и компенсациями
+
 export class MainRouter extends Component {
     constructor(props) {
         super(props)
     }
 
-    componentWillMount() {
-        fetch('http://127.0.0.1:8000/api/categories')
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({data: data})
-            })
-            .catch(console.log)
+    componentDidMount() {
+        if (this.props.categoryList.length === 0 || this.props.compensationList.length === 0) {
+            getCategoriesFromDB().then((categories) => this.props.fetchCategories(categories));
+            getCompensations().then((compensations) => this.props.fetchCompensations(compensations));
+        }
     }
 
     render() {
-        if (this.state) {
-            return (
-                <Switch>
-                    <Route exact path='/' component={App}/>
-                    <Route exact path='/history' component={HistoryMain}/>
-                    {
-                        this.state.data.categories.map((categories, index) =>
-                            (<Route exact path={'/' + categories.url}>
-                                <CompensationList category={categories.url} key={index}/>)
-                            </Route>))
-                    }
+        return (
+            <Switch>
+                <Route exact path='/' component={App}/>
 
-                    <Route path='/standard/'>
-                        <Generator/>
-                    </Route>
+                <Route exact path='/history' component={HistoryMain}/>
 
-                    <Route path='/medicine/'>
-                        <Generator/>
-                    </Route>
+                {
+                    this.props.categoryList.map((category, index) => (
+                            <Route exact path={'/' + category.url}>
+                                <CompensationList categoryUrl={category.url}/>
+                            </Route>
+                        )
+                    )
+                }
 
-                    <Route path='/repairs/'>
-                        <Generator/>
-                    </Route>
+                {
+                    this.props.compensationList.map((compensation, index) => (
+                            <Route exact path={'/' + compensation.category_url + '/' + compensation.url}>
+                                <Generator compensationUrl={compensation.url}/>
+                            </Route>
+                        )
+                    )
+                }
 
-                    <Route path='/other/'>
-                        <Generator/>
-                    </Route>
-                </Switch>
-            );
-        }
-        else {
-            return (
-                <Switch>
-                    <Route exact path='/' component={App}/>
-                    <Route exact path='/history' component={HistoryMain}/>
-                </Switch>
-
-            );
-        }
+            </Switch>
+        );
     }
 }
+
+let mapStateToProps = (state) => {
+    return {
+        categoryList: state.fetch.categories,
+        compensationList: state.fetch.compensations
+    };
+};
+
+const mapDispatchToProps = {
+    fetchCategories,
+    fetchCompensations,
+};
+
+MainRouter = connect(mapStateToProps, mapDispatchToProps)(MainRouter);
 
 export default withRouter(MainRouter);

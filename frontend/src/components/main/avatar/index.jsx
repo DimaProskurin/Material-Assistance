@@ -1,7 +1,9 @@
 import React from 'react'
+import '../../compensations/list/styles.css'
 import './styles.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import {NavLink} from "react-router-dom";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 export class Avatar extends React.Component {
     constructor(props) {
@@ -10,6 +12,11 @@ export class Avatar extends React.Component {
 
     render() {
         return (
+            <ReactCSSTransitionGroup
+                transitionName="fade"
+                transitionAppear={true}
+                transitionAppearTimeout={400}
+            >
             <div className="card AvatarBlock-root">
                 <NavLink
                     key={"keyName"}
@@ -27,6 +34,7 @@ export class Avatar extends React.Component {
                         </div>
                 </NavLink>
             </div>
+            </ReactCSSTransitionGroup>
         )
     }
 }

@@ -1,4 +1,4 @@
 import {combineReducers} from "redux";
-import categories from "./categories";
+import fetchReducer from "./fetch";
 
-export default combineReducers({categories})
+export default combineReducers({fetch: fetchReducer})

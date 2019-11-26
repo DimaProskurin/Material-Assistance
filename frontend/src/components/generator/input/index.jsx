@@ -37,7 +37,7 @@ export class InputBlock extends React.Component {
 
                         <div className="form-group col-md-6">
                             <label>Компенсация</label>
-                            <input type="text" className="form-control" placeholder={this.props.compensationName} disabled/>
+                            <input type="text" className="form-control" placeholder={this.props.compensationUrl} disabled/>
                         </div>
                     </div>
 
@@ -78,9 +78,9 @@ export class InputBlock extends React.Component {
 }
 
 InputBlock.propTypes = {
-    compensationName: String,
+    compensationUrl: String,
 };
 
 InputBlock.defaultProps = {
-    compensationName: ''
+    compensationUrl: ''
 };

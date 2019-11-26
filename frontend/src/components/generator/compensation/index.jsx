@@ -72,6 +72,8 @@ export class CompensationInfo extends React.Component {
 }
 
 CompensationInfo.propTypes = {
+    categoryUrl: String,
+    url: String,
     name: String,
     money: Array,
     once: Boolean,
@@ -80,7 +82,9 @@ CompensationInfo.propTypes = {
 };
 
 CompensationInfo.defaultProps = {
-    name: '',
+    categoryUrl: "defaultCategory",
+    url: "",
+    name: "",
     money: [],
     once: false,
     requirements: [],
