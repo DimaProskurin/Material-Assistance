@@ -15,45 +15,55 @@ export class MainRouter extends Component {
         super(props)
     }
 
+    componentWillMount() {
+        fetch('http://127.0.0.1:8000/api/categories')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({data: data})
+            })
+            .catch(console.log)
+    }
+
     render() {
-        return (
-            <Switch>
-                <Route exact path='/' component={App}/>
-                <Route exact path='/history' component={HistoryMain}/>
+        if (this.state) {
+            return (
+                <Switch>
+                    <Route exact path='/' component={App}/>
+                    <Route exact path='/history' component={HistoryMain}/>
+                    {
+                        this.state.data.categories.map((categories, index) =>
+                            (<Route exact path={'/' + categories.url}>
+                                <CompensationList category={categories.url} key={index}/>)
+                            </Route>))
+                    }
 
-                <Route exact path='/standard'>
-                    <CompensationList category={'standard'}/>
-                </Route>
+                    <Route path='/standard/'>
+                        <Generator/>
+                    </Route>
 
-                <Route exact path='/medicine'>
-                    <CompensationList category={'medicine'}/>
-                </Route>
+                    <Route path='/medicine/'>
+                        <Generator/>
+                    </Route>
 
-                <Route exact path='/repairs'>
-                    <CompensationList category={'repairs'}/>
-                </Route>
+                    <Route path='/repairs/'>
+                        <Generator/>
+                    </Route>
 
-                <Route exact path='/other'>
-                    <CompensationList category={'other'}/>
-                </Route>
+                    <Route path='/other/'>
+                        <Generator/>
+                    </Route>
+                </Switch>
+            );
+        }
+        else {
+            return (
+                <Switch>
+                    <Route exact path='/' component={App}/>
+                    <Route exact path='/history' component={HistoryMain}/>
+                </Switch>
 
-                <Route path='/standard/'>
-                    <Generator/>
-                </Route>
-
-                <Route path='/medicine/'>
-                    <Generator/>
-                </Route>
-
-                <Route path='/repairs/'>
-                    <Generator/>
-                </Route>
-
-                <Route path='/other/'>
-                    <Generator/>
-                </Route>
-            </Switch>
-        );
+            );
+        }
     }
 }
 

@@ -16,5 +16,6 @@ class Compensation(models.Model):
     additional_info = models.TextField(max_length=2048, blank=True)
     once_a_term = models.BooleanField(default=False)
     category = models.ForeignKey('Category', related_name='compensation', on_delete=models.CASCADE)
+    category_url = models.CharField(max_length=64, default='')
 
 
