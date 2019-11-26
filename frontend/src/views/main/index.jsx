@@ -40,7 +40,7 @@ export class App extends React.Component {
                     </header>
                 </div>
             );
-        }else
+        } else {
             return (
                 <div className="App">
                     <header className="App-header">
@@ -50,6 +50,7 @@ export class App extends React.Component {
                     </header>
                 </div>
             );
+        }
     }
 }
 

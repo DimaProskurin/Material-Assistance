@@ -2,6 +2,7 @@ import React from 'react';
 import {List} from "../../components/compensations/list";
 import {ItemList} from "../../components/compensations/itemList";
 import './styles.css'
+import '../main/styles.css'
 import {fetchCompensations} from "../../actions";
 import {connect} from "react-redux";
 import {getCompensations} from "../../utils";
@@ -19,7 +20,6 @@ export class CompensationList extends React.Component {
         }
     }
 
-    // Получение данных для всех ItemList должно приходить через БД из таблицы с этими компенсациями
     render() {
         if (this.props.compensationList.length !== 0) {
             return (
@@ -40,6 +40,7 @@ export class CompensationList extends React.Component {
                 </div>
             );
         } else {
+            alert('adsfasdfsdf');
             return(
                 <div className="App">
                     <header className="App-header">

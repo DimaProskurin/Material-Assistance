@@ -24,30 +24,34 @@ export class MainRouter extends Component {
 
     render() {
         return (
-            <Switch>
-                <Route exact path='/' component={App}/>
+            (this.props.compensationList.length === 0 ? (
+                <Route path={'/'} component={App} />
+            ) : (
+                <Switch>
+                    <Route exact path='/' component={App}/>
 
-                <Route exact path='/history' component={HistoryMain}/>
+                    <Route exact path='/history' component={HistoryMain}/>
 
-                {
-                    this.props.categoryList.map((category, index) => (
-                            <Route exact path={'/' + category.url}>
-                                <CompensationList categoryUrl={category.url}/>
-                            </Route>
+                    {
+                        this.props.categoryList.map((category, index) => (
+                                <Route exact path={'/' + category.url}>
+                                    <CompensationList categoryUrl={category.url}/>
+                                </Route>
+                            )
                         )
-                    )
-                }
+                    }
 
-                {
-                    this.props.compensationList.map((compensation, index) => (
-                            <Route exact path={'/' + compensation.category_url + '/' + compensation.url}>
-                                <Generator compensationUrl={compensation.url}/>
-                            </Route>
+                    {
+                        this.props.compensationList.map((compensation, index) => (
+                                <Route exact path={'/' + compensation.category_url + '/' + compensation.url}>
+                                    <Generator compensationUrl={compensation.url}/>
+                                </Route>
+                            )
                         )
-                    )
-                }
+                    }
 
-            </Switch>
+                </Switch>
+            ))
         );
     }
 }
