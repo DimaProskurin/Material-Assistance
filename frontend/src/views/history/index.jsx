@@ -4,9 +4,6 @@ import {HistoryItem} from "../../components/history/item";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 
 export class HistoryMain extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (

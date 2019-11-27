@@ -7,12 +7,11 @@ import {connect} from "react-redux";
 import {getCompensations} from "../../utils";
 import {stringToArray} from "../../utils";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import PropTypes from "prop-types";
+import {Preloader} from "../../components/preloader";
 
 
 export class Generator extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         if (this.props.compensationList.length === 0) {
@@ -22,7 +21,6 @@ export class Generator extends React.Component {
 
     render() {
         if (this.props.compensationList.length !== 0) {
-            console.log(this.props.compensationList);
             let currentCompensation =
                 this.props.compensationList.filter(compensation => compensation.url === this.props.compensationUrl)[0];
 
@@ -50,13 +48,7 @@ export class Generator extends React.Component {
             )
         } else {
             return (
-                <div className="App">
-                    <header className="App-header">
-                        <div className="spinner-border" style={{width: "5rem", height: "5rem", role: "status"}}>
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </header>
-                </div>
+                <Preloader/>
             )
         }
 
@@ -64,7 +56,7 @@ export class Generator extends React.Component {
 }
 
 Generator.propTypes = {
-    compensationUrl: String,
+    compensationUrl: PropTypes.string,
 };
 
 Generator.defaultProps = {

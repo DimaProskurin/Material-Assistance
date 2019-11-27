@@ -3,11 +3,9 @@ import './styles.css'
 import oneTime from './oneNew.svg'
 import ReactTooltip from 'react-tooltip'
 import {NavLink} from "react-router-dom";
+import PropTypes from "prop-types";
 
 export class ItemList extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     state = {
         isOpen: false,
@@ -89,13 +87,13 @@ export class ItemList extends React.Component {
 }
 
 ItemList.propTypes = {
-    categoryUrl: String,
-    url: String,
-    title: String,
-    isOnce: Boolean,
-    money: Array,
-    documents: Array,
-    addInfo: Array,
+    categoryUrl: PropTypes.string,
+    url: PropTypes.string,
+    title: PropTypes.string,
+    isOnce: PropTypes.bool,
+    money: PropTypes.arrayOf(),
+    documents: PropTypes.arrayOf(),
+    addInfo: PropTypes.arrayOf(),
 };
 
 ItemList.defaultProps = {

@@ -8,12 +8,10 @@ import {fetchCategories} from "./actions";
 import {fetchCompensations} from "./actions";
 import {connect} from "react-redux";
 import {getCategoriesFromDB, getCompensations} from "./utils";
+import {Preloader} from "./components/preloader";
 
 
 export class MainRouter extends Component {
-    constructor(props) {
-        super(props)
-    }
 
     componentDidMount() {
         if (this.props.categoryList.length === 0 || this.props.compensationList.length === 0) {
@@ -25,7 +23,7 @@ export class MainRouter extends Component {
     render() {
         return (
             (this.props.compensationList.length === 0 ? (
-                <Route path={'/'} component={App} />
+                <Route path={'/'} component={Preloader} />
             ) : (
                 <Switch>
                     <Route exact path='/' component={App}/>
@@ -34,7 +32,7 @@ export class MainRouter extends Component {
 
                     {
                         this.props.categoryList.map((category, index) => (
-                                <Route exact path={'/' + category.url}>
+                                <Route exact path={'/' + category.url} key={index}>
                                     <CompensationList categoryUrl={category.url}/>
                                 </Route>
                             )
@@ -43,7 +41,7 @@ export class MainRouter extends Component {
 
                     {
                         this.props.compensationList.map((compensation, index) => (
-                                <Route exact path={'/' + compensation.category_url + '/' + compensation.url}>
+                                <Route exact path={'/' + compensation.category_url + '/' + compensation.url} key={index}>
                                     <Generator compensationUrl={compensation.url}/>
                                 </Route>
                             )

@@ -1,12 +1,9 @@
 import React from 'react'
 import './styles.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import PropTypes from "prop-types";
 
 export class HistoryItem extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
 
     render() {
         return(
@@ -30,8 +27,8 @@ export class HistoryItem extends React.Component {
 }
 
 HistoryItem.propsTypes = {
-    category: String,
-    compensation: String,
-    money: String,
-    date: String,
+    category: PropTypes.string,
+    compensation: PropTypes.string,
+    money: PropTypes.string,
+    date: PropTypes.string,
 };

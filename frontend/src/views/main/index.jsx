@@ -5,15 +5,13 @@ import 'bootstrap/dist/css/bootstrap.css'
 import {connect} from 'react-redux'
 import {fetchCategories} from '../../actions/index'
 import {getCategoriesFromDB} from "../../utils";
+import {Preloader} from "../../components/preloader";
 
 
 const BACK = 'http://127.0.0.1:8000/';
 
 
 export class App extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         if (this.props.categoryList.length === 0) {
@@ -32,7 +30,7 @@ export class App extends React.Component {
                             {
                                 this.props.categoryList.map((category, index) =>
                                     (<Avatar url={ category.url } imageSrc={ BACK + category.image } title={ category.name }
-                                            description={ category.description }/>))
+                                            description={ category.description } key={index}/>))
                             }
                         </div>
                         <br/>
@@ -42,13 +40,7 @@ export class App extends React.Component {
             );
         } else {
             return (
-                <div className="App">
-                    <header className="App-header">
-                        <div className="spinner-border" style={{width: "5rem", height: "5rem", role: "status"}}>
-                            <span className="sr-only">Loading...</span>
-                        </div>
-                    </header>
-                </div>
+                <Preloader />
             );
         }
     }

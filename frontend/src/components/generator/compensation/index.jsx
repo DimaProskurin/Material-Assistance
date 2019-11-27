@@ -3,9 +3,6 @@ import './styles.css'
 import PropTypes from 'prop-types';
 
 export class CompensationInfo extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         return (
@@ -72,13 +69,13 @@ export class CompensationInfo extends React.Component {
 }
 
 CompensationInfo.propTypes = {
-    categoryUrl: String,
-    url: String,
-    name: String,
-    money: Array,
-    once: Boolean,
-    requirements: Array,
-    additionalInfo: Array,
+    categoryUrl: PropTypes.string,
+    url: PropTypes.string,
+    name: PropTypes.string,
+    money: PropTypes.arrayOf(),
+    once: PropTypes.bool,
+    requirements: PropTypes.arrayOf(),
+    additionalInfo: PropTypes.arrayOf(),
 };
 
 CompensationInfo.defaultProps = {

@@ -3,9 +3,6 @@ import '../compensation/styles.css'
 import PropTypes from 'prop-types';
 
 export class InputBlock extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         return (
@@ -78,9 +75,9 @@ export class InputBlock extends React.Component {
 }
 
 InputBlock.propTypes = {
-    compensationUrl: String,
+    compensationUrl: PropTypes.string,
 };
 
 InputBlock.defaultProps = {
-    compensationUrl: ''
+    compensationUrl: ""
 };

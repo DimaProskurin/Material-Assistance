@@ -4,11 +4,10 @@ import './styles.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import {NavLink} from "react-router-dom";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import PropTypes from 'prop-types';
+
 
 export class Avatar extends React.Component {
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         return (
@@ -16,6 +15,8 @@ export class Avatar extends React.Component {
                 transitionName="fade"
                 transitionAppear={true}
                 transitionAppearTimeout={400}
+                transitionEnterTimeout={0}
+                transitionLeaveTimeout={0}
             >
             <div className="card AvatarBlock-root">
                 <NavLink
@@ -40,15 +41,15 @@ export class Avatar extends React.Component {
 }
 
 Avatar.propTypes = {
-    url: String,
-    imageSrc: String,
-    title: String,
-    description: String,
+    url: PropTypes.string,
+    imageSrc: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
 };
 
 Avatar.defaultProps = {
-    url: '',
-    imageSrc: '',
-    title: '',
-    description: '',
+    url: "",
+    imageSrc: "",
+    title: "",
+    description: "",
 };

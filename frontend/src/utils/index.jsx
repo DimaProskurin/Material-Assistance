@@ -11,7 +11,7 @@ export async function getCompensations() {
 }
 
 export function stringToArray(string) {
-    if (string === '')
+    if (string === "")
         return  [];
     return string.split('\n');
 }
