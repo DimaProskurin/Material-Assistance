@@ -16,14 +16,33 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
+from django.conf.urls import url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .settings import MEDIA_ROOT
 from .settings import MEDIA_URL
+from django.shortcuts import redirect
+from rest_framework.authtoken.models import Token
+from rest_framework.response import Response
 
+def profile_view(request):
+    response = redirect('http://localhost:3000/')
+    token = Token.objects.get(user=request.user)
+    response.set_cookie('money_api_token', token)
+    return response
+
+
+def get_token(request):
+    token = request.COOKIES.get('money_api_token')
+    print(token)
+    return Response({"money_api_token": token})
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('info.urls')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/profile/', profile_view),
+    path('token/', get_token)
+
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

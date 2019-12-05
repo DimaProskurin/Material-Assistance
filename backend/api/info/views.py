@@ -6,6 +6,8 @@ from .serializers import CategorySerializer, CompensationSerializer
 
 class CategoriesView(APIView):
     def get(self, request):
+        token = request.COOKIES.get('money_api_token')
+        print(token)
         params = dict(request.query_params)
         if 'url' in params:
             response = Category.objects.filter(url__in=params['url'])
@@ -16,6 +18,8 @@ class CategoriesView(APIView):
 
 class CompensationsView(APIView):
     def get(self, request):
+        token = request.COOKIES.get('money_api_token')
+        print(token)
         params = dict(request.query_params)
         if 'category_url' in params:
             categories = Category.objects.filter(url__in=params['category_url'])

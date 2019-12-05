@@ -18,7 +18,7 @@ export class Login extends React.Component {
                         </p>
 
                         <p className="lead">
-                            <a href="/accounts/google/login/?process=login" className="btn btn-lg btn-secondary">Узнать больше</a>
+                            <a href="http://127.0.0.1:8000/accounts/google/login/?process=login" className="btn btn-lg btn-secondary">Узнать больше</a>
                         </p>
                     </div>
                 </div>
