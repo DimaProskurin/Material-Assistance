@@ -23,6 +23,7 @@ from .settings import MEDIA_URL
 from django.shortcuts import redirect
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 def profile_view(request):
     response = redirect('http://localhost:3000/')
@@ -31,18 +32,18 @@ def profile_view(request):
     return response
 
 
-def get_token(request):
-    token = request.COOKIES.get('money_api_token')
-    print(token)
-    return Response({"money_api_token": token})
+class GetToken(APIView):
+    def get(self, request):
+        token = request.COOKIES['money_api_token']
+        return Response({"money_api_token": token})
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('info.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', profile_view),
-    path('token/', get_token)
-
+    path('token/', GetToken.as_view())
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
