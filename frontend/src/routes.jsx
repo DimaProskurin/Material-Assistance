@@ -9,6 +9,7 @@ import {fetchCompensations} from "./actions";
 import {connect} from "react-redux";
 import {getCategoriesFromDB, getCompensations} from "./utils";
 import {Preloader} from "./components/preloader";
+import Login from "./views/login";
 
 
 export class MainRouter extends Component {
@@ -23,12 +24,17 @@ export class MainRouter extends Component {
     render() {
         return (
             (this.props.compensationList.length === 0 ? (
-                <Route path={'/'} component={Preloader} />
+                <Switch>
+                    <Route exact path={'/login'} component={Login}/>
+                    <Route path={'/'} component={Preloader} />
+                </Switch>
             ) : (
                 <Switch>
                     <Route exact path='/' component={App}/>
 
                     <Route exact path='/history' component={HistoryMain}/>
+
+                    <Route exact path={'/login'} component={Login}/>
 
                     {
                         this.props.categoryList.map((category, index) => (
