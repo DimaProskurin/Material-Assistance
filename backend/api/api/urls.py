@@ -24,10 +24,13 @@ from django.shortcuts import redirect
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+import re
+
 
 def profile_view(request):
     response = redirect('http://localhost:3000/')
-    token = Token.objects.get(user=request.user)
+    Token.objects.filter(user=request.user).delete()
+    token = Token.objects.get_or_create(user=request.user)
     response.set_cookie('money_api_token', token)
     return response
 
@@ -38,12 +41,13 @@ class GetToken(APIView):
         return Response({"money_api_token": token})
 
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('info.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', profile_view),
-    path('token/', GetToken.as_view())
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
