@@ -24,10 +24,13 @@ from django.shortcuts import redirect
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+import re
+
 
 def profile_view(request):
     response = redirect('http://localhost:3000/')
-    token = Token.objects.get(user=request.user)
+    Token.objects.filter(user=request.user).delete()
+    token = Token.objects.get_or_create(user=request.user)
     response.set_cookie('money_api_token', token)
     return response
 
