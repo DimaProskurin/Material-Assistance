@@ -43,7 +43,8 @@ urlpatterns = [
     path('api/', include('info.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', profile_view),
-    path('token/', GetToken.as_view())
+    path('token/', GetToken.as_view()),
+    path('api/', include('application.urls'))
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
