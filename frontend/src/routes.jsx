@@ -13,7 +13,6 @@ import Login from "./views/login";
 
 
 export class MainRouter extends Component {
-
     componentDidMount() {
         if (this.props.categoryList.length === 0 || this.props.compensationList.length === 0) {
             getCategoriesFromDB().then((categories) => this.props.fetchCategories(categories));

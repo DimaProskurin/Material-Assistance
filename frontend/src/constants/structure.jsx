@@ -6,5 +6,5 @@ export const STRUCTURE = {
     history: {
         title: 'История',
         route: '/history',
-    },
+    }
 };
