@@ -3,12 +3,13 @@ import {STRUCTURE} from "../../constants/structure"
 import {NavLink} from "react-router-dom";
 import css from './styles.module.scss';
 import {Dropdown} from "react-bootstrap";
+import icon from './multiple-users-silhouette.svg'
 
 export const Header = () => {
     return (
         <div className={css.header}>
             <span className={[css.leftBlock].join(' ')}>
-                Логотип
+                <img width={"48px"} height={"48px"} src={icon} alt=""/>
             </span>
 
             <span className={css.centerBlock}>
@@ -27,12 +28,11 @@ export const Header = () => {
             <span className={css.rightBlock}>
                 <Dropdown className={css.dropdownLink}>
                 <Dropdown.Toggle style={{all: "unset"}}>
-                    Петухов Петух
+                    Проскурин Дмитрий
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#">Мой профиль</Dropdown.Item>
-                    <Dropdown.Item href="#/logout">Выйти</Dropdown.Item>
+                    <Dropdown.Item href="#">Выйти</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             </span>
