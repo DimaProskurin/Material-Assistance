@@ -7,7 +7,12 @@ export async function getCategoriesFromDB() {
 
     });
     let data = await response.json();
-    return data.categories;
+
+    if ('categories' in data) {
+        return data.categories;
+    } else {
+        return [];
+    }
 }
 
 export async function getCompensations() {
@@ -17,7 +22,12 @@ export async function getCompensations() {
     });
 
     let data = await response.json();
-    return data.compensations;
+
+    if ('compensations' in data) {
+        return data.compensations;
+    } else {
+        return [];
+    }
 }
 
 export function stringToArray(string) {
