@@ -1,17 +1,33 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Category, Compensation
+from .models import Category, Compensation, WhiteListEmail
 from .serializers import CategorySerializer, CompensationSerializer
 from rest_framework.authtoken.models import Token
-import re
+from .utils import get_token_from_request
+
+
+def verdict(request):
+    try:
+        token = get_token_from_request(request)
+    except Exception:
+        return "auth error"
+
+    try:
+        user = Token.objects.filter(key=token).last().user
+    except AttributeError:
+        return "auth error"
+
+    if len(WhiteListEmail.objects.filter(email=user.email)) == 0:
+        return "whitelist error"
+
+    return "ok"
 
 
 class CategoriesView(APIView):
     def get(self, request):
-        tokenTuple = request.COOKIES.get('money_api_token')
-        matches = re.search(r'(<Token: (\S*)>)', tokenTuple)
-        token = matches.groups(0)[1]
-        user = Token.objects.filter(key=token).last().user
+        result = verdict(request)
+        if result != "ok":
+            return Response(result)
 
         params = dict(request.query_params)
         if 'url' in params:
@@ -23,7 +39,10 @@ class CategoriesView(APIView):
 
 class CompensationsView(APIView):
     def get(self, request):
-        token = request.COOKIES.get('money_api_token')
+        result = verdict(request)
+        if result != "ok":
+            return Response(result)
+
         params = dict(request.query_params)
         if 'category_url' in params:
             categories = Category.objects.filter(url__in=params['category_url'])

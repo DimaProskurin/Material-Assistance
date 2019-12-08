@@ -19,3 +19,5 @@ class Compensation(models.Model):
     category_url = models.CharField(max_length=64, default='')
 
 
+class WhiteListEmail(models.Model):
+    email = models.EmailField()
