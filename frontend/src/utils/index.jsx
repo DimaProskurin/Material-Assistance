@@ -8,10 +8,12 @@ export async function getCategoriesFromDB() {
     });
     let data = await response.json();
 
-    if ('categories' in data) {
-        return data.categories;
-    } else {
-        return [];
+    try {
+        if ('categories' in data) {
+            return data.categories;
+        }
+    } catch (e) {
+        return data;
     }
 }
 
@@ -23,10 +25,12 @@ export async function getCompensations() {
 
     let data = await response.json();
 
-    if ('compensations' in data) {
-        return data.compensations;
-    } else {
-        return [];
+    try {
+        if ('compensations' in data) {
+            return data.compensations;
+        }
+    } catch (e) {
+        return data;
     }
 }
 

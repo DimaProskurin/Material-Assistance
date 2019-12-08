@@ -8,32 +8,47 @@ import {fetchCategories} from "./actions";
 import {fetchCompensations} from "./actions";
 import {connect} from "react-redux";
 import {getCategoriesFromDB, getCompensations} from "./utils";
-import {Preloader} from "./components/preloader";
 import Login from "./views/login";
 
 
 export class MainRouter extends Component {
+    state = {
+        verdict: "ok",
+    };
+
     componentDidMount() {
-        if (this.props.categoryList.length === 0 || this.props.compensationList.length === 0) {
-            getCategoriesFromDB().then((categories) => this.props.fetchCategories(categories));
-            getCompensations().then((compensations) => this.props.fetchCompensations(compensations));
+        getCategoriesFromDB().then((resp) => {
+            if (resp === "auth error" || resp === "whitelist error") {
+                this.setState({verdict: resp});
+                return;
+            }
+            this.props.fetchCategories(resp);
+        });
+
+        if (this.state.verdict === "ok") {
+            getCompensations().then((resp) => {
+                if (resp === "auth error" || resp === "whitelist error") {
+                    this.setState({verdict: resp});
+                    return;
+                }
+                this.props.fetchCompensations(resp);
+            });
         }
     }
 
     render() {
-        return (
-            (this.props.compensationList.length === 0 ? (
+        if (this.state.verdict === "whitelist error" || this.state.verdict === "auth error") {
+            return (
                 <Switch>
-                    <Route exact path={'/login'} component={Login}/>
-                    <Route path={'/'} component={Preloader} />
+                    <Route path={'/'} component={Login} />
                 </Switch>
-            ) : (
+            )
+        } else {
+            return (
                 <Switch>
                     <Route exact path='/' component={App}/>
 
                     <Route exact path='/history' component={HistoryMain}/>
-
-                    <Route exact path={'/login'} component={Login}/>
 
                     {
                         this.props.categoryList.map((category, index) => (
@@ -54,8 +69,8 @@ export class MainRouter extends Component {
                     }
 
                 </Switch>
-            ))
-        );
+            )
+        }
     }
 }
 
