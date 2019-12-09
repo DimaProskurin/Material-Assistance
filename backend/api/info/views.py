@@ -1,9 +1,10 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Category, Compensation, WhiteListEmail
-from .serializers import CategorySerializer, CompensationSerializer
+from .models import Category, Compensation, WhiteListEmail, ValidatedStudent, Payment
+from .serializers import CategorySerializer, CompensationSerializer, PaymentSerializer, StudentSerializer
 from rest_framework.authtoken.models import Token
-from .utils import get_token_from_request
+from django.contrib.auth.models import User
+from .utils import get_token_from_request, get_student_from_request
 
 
 def verdict(request):
@@ -51,3 +52,24 @@ class CompensationsView(APIView):
             response = Compensation.objects.all()
 
         return Response({"compensations": CompensationSerializer(response, many=True).data})
+
+
+class HistoryView(APIView):
+    def get(self, request):
+        result = verdict(request)
+        if result != "ok":
+            return Response(result)
+        payments = Payment.objects.filter(student=get_student_from_request(request))
+
+        return Response({"payments": sorted(PaymentSerializer(payments, many=True).data,
+                                            key=lambda data: data['date'],
+                                            reverse=True)})
+
+
+class StudentView(APIView):
+    def get(self, request):
+        result = verdict(request)
+        if result != "ok":
+            return Response(result)
+
+        return Response({"student": StudentSerializer(get_student_from_request(request), many=False).data})
