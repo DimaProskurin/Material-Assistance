@@ -24,7 +24,6 @@ from django.shortcuts import redirect
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
-import re
 
 
 def profile_view(request):
