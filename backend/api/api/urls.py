@@ -40,13 +40,20 @@ class GetToken(APIView):
         return Response({"money_api_token": token})
 
 
+def logout_view(request):
+    response = redirect('http://localhost:3000/')
+    response.delete_cookie('money_api_token')
+    return response
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('info.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', profile_view),
     path('token/', GetToken.as_view()),
-    path('api/', include('application.urls'))
+    path('api/', include('application.urls')),
+    path('logout/', logout_view)
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)

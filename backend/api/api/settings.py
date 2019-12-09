@@ -114,6 +114,8 @@ AUTHENTICATION_BACKENDS = (
 
 ACCOUNT_LOGOUT_ON_GET = True
 
+ACCOUNT_LOGOUT_REDIRECT_URL ="/logout"
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',

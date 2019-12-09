@@ -11,7 +11,6 @@ class Category(models.Model):
         return self.name
 
 
-
 class Compensation(models.Model):
     name = models.CharField(max_length=64)
     url = models.CharField(max_length=64, default='')
@@ -19,7 +18,7 @@ class Compensation(models.Model):
     requirements = models.TextField(max_length=2048, blank=True)
     additional_info = models.TextField(max_length=2048, blank=True)
     once_a_term = models.BooleanField(default=False)
-    category = models.ForeignKey('Category', related_name='compensation', on_delete=models.CASCADE)
+    category = models.ForeignKey('Category', related_name='compensations', on_delete=models.CASCADE)
     category_url = models.CharField(max_length=64, default='')
 
     def __str__(self):
@@ -39,9 +38,9 @@ class ValidatedStudent(models.Model):
 
 class Payment(models.Model):
     payment_id = models.IntegerField(primary_key=True, unique=True, auto_created=True)
-    student = models.ForeignKey('ValidatedStudent', on_delete=models.CASCADE)
+    student = models.ForeignKey('ValidatedStudent', related_name='compensation', on_delete=models.CASCADE)
     money = models.IntegerField()
-    compensation_id = models.ForeignKey('Compensation', on_delete=models.CASCADE)
+    compensation_id = models.ForeignKey('Compensation', related_name='compensations', on_delete=models.CASCADE)
     date = models.DateField()
 
     def __str__(self):
