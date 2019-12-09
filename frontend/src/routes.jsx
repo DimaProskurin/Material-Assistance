@@ -9,7 +9,7 @@ import {fetchCompensations} from "./actions";
 import {connect} from "react-redux";
 import {getCategoriesFromDB, getCompensations} from "./utils";
 import Login from "./views/login";
-
+import {fetchAuth} from "./actions";
 
 export class MainRouter extends Component {
     state = {
@@ -23,6 +23,7 @@ export class MainRouter extends Component {
                 return;
             }
             this.props.fetchCategories(resp);
+            this.props.fetchAuth(true);
         });
 
         if (this.state.verdict === "ok") {
@@ -32,6 +33,7 @@ export class MainRouter extends Component {
                     return;
                 }
                 this.props.fetchCompensations(resp);
+                this.props.fetchAuth(true);
             });
         }
     }
@@ -77,13 +79,14 @@ export class MainRouter extends Component {
 let mapStateToProps = (state) => {
     return {
         categoryList: state.fetch.categories,
-        compensationList: state.fetch.compensations
+        compensationList: state.fetch.compensations,
     };
 };
 
 const mapDispatchToProps = {
     fetchCategories,
     fetchCompensations,
+    fetchAuth,
 };
 
 MainRouter = connect(mapStateToProps, mapDispatchToProps)(MainRouter);
