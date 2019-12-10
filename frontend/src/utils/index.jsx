@@ -44,3 +44,37 @@ export function getToken() {
     console.log(document.cookie)
 }
 
+export async function getStudentData() {
+    let response = await fetch('http://127.0.0.1:8000/api/student/', {
+        credentials: 'include',
+
+    });
+
+    let data = await response.json();
+
+    try {
+        if ('student' in data) {
+            return data.student;
+        }
+    } catch (e) {
+        return data;
+    }
+}
+
+export async function getStudentHistory() {
+    let response = await fetch('http://127.0.0.1:8000/api/history/', {
+        credentials: 'include',
+
+    });
+
+    let data = await response.json();
+
+    try {
+        if ('payments' in data) {
+            return data.payments;
+        }
+    } catch (e) {
+        return data;
+    }
+}
+

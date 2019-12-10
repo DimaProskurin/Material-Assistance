@@ -10,6 +10,10 @@ import {connect} from "react-redux";
 import {getCategoriesFromDB, getCompensations} from "./utils";
 import Login from "./views/login";
 import {fetchAuth} from "./actions";
+import {getStudentData} from "./utils";
+import {fetchStudentData} from "./actions";
+import {getStudentHistory} from "./utils";
+import {fetchStudentHistory} from "./actions";
 
 export class MainRouter extends Component {
     state = {
@@ -36,13 +40,36 @@ export class MainRouter extends Component {
                 this.props.fetchAuth(true);
             });
         }
+
+
+        if (this.state.verdict === "ok") {
+            getStudentData().then((resp) => {
+                if (resp === "auth error" || resp === "whitelist error") {
+                    this.setState({verdict: resp});
+                    return;
+                }
+                this.props.fetchStudentData(resp);
+            })
+        }
+
+        if (this.state.verdict === "ok") {
+            getStudentHistory().then((resp) => {
+                if (resp === "auth error" || resp === "whitelist error") {
+                    this.setState({verdict: resp});
+                    return;
+                }
+                this.props.fetchStudentHistory(resp);
+            })
+        }
     }
 
     render() {
         if (this.state.verdict === "whitelist error" || this.state.verdict === "auth error") {
             return (
                 <Switch>
-                    <Route path={'/'} component={Login} />
+                    <Route path={'/'}>
+                        <Login verdict={this.state.verdict} />
+                    </Route>
                 </Switch>
             )
         } else {
@@ -87,6 +114,8 @@ const mapDispatchToProps = {
     fetchCategories,
     fetchCompensations,
     fetchAuth,
+    fetchStudentData,
+    fetchStudentHistory,
 };
 
 MainRouter = connect(mapStateToProps, mapDispatchToProps)(MainRouter);

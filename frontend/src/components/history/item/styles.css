@@ -12,10 +12,6 @@ containerClass {
     background-color: white;
 }
 
-containerClass:last-child {
-    border: 0;
-}
-
 containerClass:hover {
     background-color: #dddddd;
 }

@@ -33,11 +33,11 @@ export class Header extends React.Component {
                     <span className={css.rightBlock}>
                         <Dropdown className={css.dropdownLink}>
                             <Dropdown.Toggle style={{all: "unset"}}>
-                                Проскурин Дмитрий
+                                {this.props.studentData['surname'] + " " + this.props.studentData['name']}
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#">Выйти</Dropdown.Item>
+                                <Dropdown.Item href="http://127.0.0.1:8000/logout">Выйти</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </span>
@@ -66,6 +66,7 @@ export class Header extends React.Component {
 let mapStateToProps = (state) => {
     return {
         authed: state.fetch.authed,
+        studentData: state.fetch.studentData,
     };
 };
 
