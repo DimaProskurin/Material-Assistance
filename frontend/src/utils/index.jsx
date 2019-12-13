@@ -1,8 +1,10 @@
 import cookie from "react-cookies";
 
+export const SITE_ADDRESS = 'https://fullstackdeploy.herokuapp.com';
+
 
 export async function getCategoriesFromDB() {
-    let response = await fetch('http://127.0.0.1:8000/api/categories/', {
+    let response = await fetch(SITE_ADDRESS + '/api/categories/', {
         credentials: 'include',
 
     });
@@ -18,7 +20,7 @@ export async function getCategoriesFromDB() {
 }
 
 export async function getCompensations() {
-    let response = await fetch('http://127.0.0.1:8000/api/compensations/', {
+    let response = await fetch(SITE_ADDRESS + '/api/compensations/', {
         credentials: 'include',
 
     });
@@ -45,7 +47,7 @@ export function getToken() {
 }
 
 export async function getStudentData() {
-    let response = await fetch('http://127.0.0.1:8000/api/student/', {
+    let response = await fetch(SITE_ADDRESS + '/api/student/', {
         credentials: 'include',
 
     });
@@ -62,7 +64,7 @@ export async function getStudentData() {
 }
 
 export async function getStudentHistory() {
-    let response = await fetch('http://127.0.0.1:8000/api/history/', {
+    let response = await fetch(SITE_ADDRESS + '/api/history/', {
         credentials: 'include',
 
     });
