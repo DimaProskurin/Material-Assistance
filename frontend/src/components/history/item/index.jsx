@@ -13,7 +13,7 @@ export class HistoryItem extends React.Component {
                 </span>
                 <span>
                     <div className={"money"}>
-                        + {this.props.money}
+                        + {this.props.money + "₽"}
                     </div>
                     <div style={{
                         display: "flex",

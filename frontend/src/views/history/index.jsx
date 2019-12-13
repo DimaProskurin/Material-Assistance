@@ -18,7 +18,7 @@ export class HistoryMain extends React.Component {
                     <div className={"list"}>
                         {
                             this.props.studentHistory.map((payment, index) => (
-                                <HistoryItem compensation={payment.compensation_id} money={payment.money + ",00"} date={payment.date} key={index} />
+                                <HistoryItem compensation={payment.compensation_id} money={payment.money} date={payment.date} key={index} />
                             ))
                         }
                     </div>

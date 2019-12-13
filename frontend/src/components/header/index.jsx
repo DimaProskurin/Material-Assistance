@@ -14,7 +14,7 @@ export class Header extends React.Component {
         if (this.props.authed) {
             return (
                 <div className={css.header}>
-                    <span className={[css.leftBlock].join(' ')}>
+                    <span className={css.leftBlock}>
                         <img width={"48px"} height={"48px"} src={icon} alt=""/>
                     </span>
 
