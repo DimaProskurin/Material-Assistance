@@ -19,7 +19,7 @@ export class App extends React.Component {
                         <div className="card-deck">
                             {
                                 this.props.categoryList.map((category, index) =>
-                                    (<Avatar url={ category.url } imageSrc={ SITE_ADDRESS + category.image } title={ category.name }
+                                    (<Avatar url={ category.url } imageSrc={ category.image } title={ category.name }
                                             description={ category.description } key={index}/>))
                             }
                         </div>
