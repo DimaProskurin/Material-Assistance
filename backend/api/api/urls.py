@@ -14,20 +14,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf.urls.static import static
 from django.conf.urls import url
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from .settings import MEDIA_ROOT
-from .settings import MEDIA_URL
+
+from .settings import MEDIA_ROOT, MEDIA_URL
 from django.shortcuts import redirect
 from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.views.generic import TemplateView
+from .constants import siteAddress
 
 
 def profile_view(request):
-    response = redirect('http://localhost:3000/')
+    response = redirect(siteAddress)
     Token.objects.filter(user=request.user).delete()
     token = Token.objects.get_or_create(user=request.user)
     response.set_cookie('money_api_token', token)
@@ -41,7 +42,7 @@ class GetToken(APIView):
 
 
 def logout_view(request):
-    response = redirect('http://localhost:3000/')
+    response = redirect(siteAddress)
     response.delete_cookie('money_api_token')
     return response
 
@@ -57,4 +58,4 @@ urlpatterns = [
 ]
 
 urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
-urlpatterns += staticfiles_urlpatterns()
+# urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

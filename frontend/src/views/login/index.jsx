@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import {SITE_ADDRESS} from "../../utils";
 
 
 export class Login extends React.Component {
@@ -23,7 +24,7 @@ export class Login extends React.Component {
                             </p>
 
                             <p className="lead">
-                                <a href="http://127.0.0.1:8000/accounts/google/login/?process=login" className="btn btn-lg btn-secondary">Узнать больше</a>
+                                <a href={SITE_ADDRESS + "/accounts/google/login/?process=login"} className="btn btn-lg btn-secondary">Узнать больше</a>
                             </p>
                         </div>
                     )}

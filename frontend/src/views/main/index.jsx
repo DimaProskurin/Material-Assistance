@@ -5,9 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import {connect} from 'react-redux'
 import {fetchCategories} from '../../actions/index'
 import {Preloader} from "../../components/preloader";
-
-
-const BACK = 'http://127.0.0.1:8000/';
+import {SITE_ADDRESS} from '../../utils/index'
 
 
 export class App extends React.Component {
@@ -21,7 +19,7 @@ export class App extends React.Component {
                         <div className="card-deck">
                             {
                                 this.props.categoryList.map((category, index) =>
-                                    (<Avatar url={ category.url } imageSrc={ BACK + category.image } title={ category.name }
+                                    (<Avatar url={ category.url } imageSrc={ category.image } title={ category.name }
                                             description={ category.description } key={index}/>))
                             }
                         </div>

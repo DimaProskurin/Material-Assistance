@@ -27,6 +27,7 @@ containerClass:hover {
 
 .compensationTitle {
     display: flex;
+    max-width: 50%;
     align-items: center;
     justify-content: center;
     font-size: 3vh;

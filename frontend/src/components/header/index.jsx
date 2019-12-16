@@ -7,13 +7,14 @@ import icon from './multiple-users-silhouette.svg'
 import {fetchAuth, fetchCategories, fetchCompensations} from "../../actions";
 import {connect} from "react-redux";
 import {MainRouter} from "../../routes";
+import {SITE_ADDRESS} from "../../utils";
 
 export class Header extends React.Component {
     render() {
         if (this.props.authed) {
             return (
                 <div className={css.header}>
-                    <span className={[css.leftBlock].join(' ')}>
+                    <span className={css.leftBlock}>
                         <img width={"48px"} height={"48px"} src={icon} alt=""/>
                     </span>
 
@@ -37,7 +38,7 @@ export class Header extends React.Component {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href="http://127.0.0.1:8000/logout">Выйти</Dropdown.Item>
+                                <Dropdown.Item href={SITE_ADDRESS + "/logout/"}>Выйти</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </span>

@@ -1,6 +1,7 @@
 import React from 'react'
 import '../compensation/styles.css'
 import PropTypes from 'prop-types';
+import {SITE_ADDRESS} from "../../../utils";
 
 export class InputBlock extends React.Component {
 
@@ -81,7 +82,7 @@ export class InputBlock extends React.Component {
                         let work = document.getElementById("workField").checked;
                         let docs = document.getElementById("docsField").checked;
 
-                        let myRequest = "http://127.0.0.1:8000/api/application/?fullName=" + fullName +
+                        let myRequest = SITE_ADDRESS + "/api/application/?fullName=" + fullName +
                             "&group=" + group +
                             "&compensationName=" + compensation +
                             "&dormitoryBox=" + dormitory +
