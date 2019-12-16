@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import django_heroku
-from .constants import siteAddress
+from .constants import SITE_ADDRESS
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -26,8 +27,7 @@ SECRET_KEY = '_vqp&mhp0^4&vi)=3&k-hphz50y+b95lh^b#o0n(^xxad%&*%e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# is it safe?
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [SITE_ADDRESS]
 
 
 # Application definition
@@ -49,12 +49,12 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'storages',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
-
 
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
@@ -178,8 +178,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-django_heroku.settings(locals())
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'build/static')]
@@ -190,7 +188,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-# previously it was [siteAddress]
-CSRF_TRUSTED_ORIGINS = ['*']
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_ACCESS_KEY_ID = "AKIAXXWZMKZVFH5Q4CTD"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "materialassistance"
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 
+CSRF_TRUSTED_ORIGINS = [SITE_ADDRESS]
 
+django_heroku.settings(locals())

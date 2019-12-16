@@ -1,9 +1,8 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Category, Compensation, WhiteListEmail, ValidatedStudent, Payment
+from .models import Category, Compensation, ValidatedStudent, Payment
 from .serializers import CategorySerializer, CompensationSerializer, PaymentSerializer, StudentSerializer
 from rest_framework.authtoken.models import Token
-from django.contrib.auth.models import User
 from .utils import get_token_from_request, get_student_from_request
 
 
@@ -18,7 +17,7 @@ def verdict(request):
     except AttributeError:
         return "auth error"
 
-    if len(WhiteListEmail.objects.filter(email=user.email)) == 0:
+    if len(ValidatedStudent.objects.filter(email=user.email)) == 0:
         return "whitelist error"
 
     return "ok"
