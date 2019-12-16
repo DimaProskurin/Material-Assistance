@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_vqp&mhp0^4&vi)=3&k-hphz50y+b95lh^b#o0n(^xxad%&*%e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [SITE_ADDRESS]
 
 
 # Application definition
@@ -187,6 +187,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-CSRF_TRUSTED_ORIGINS = ["*"]
+CSRF_TRUSTED_ORIGINS = [SITE_ADDRESS]
 
 django_heroku.settings(locals())
