@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'storages',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -186,6 +187,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_ACCESS_KEY_ID = "AKIAXXWZMKZVFH5Q4CTD"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_STORAGE_BUCKET_NAME = "materialassistance"
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 
 CSRF_TRUSTED_ORIGINS = [SITE_ADDRESS]
 
