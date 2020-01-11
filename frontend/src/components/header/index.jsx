@@ -3,7 +3,7 @@ import {STRUCTURE} from "../../constants/structure"
 import {NavLink, withRouter} from "react-router-dom";
 import css from './styles.module.scss';
 import {Dropdown} from "react-bootstrap";
-import icon from './multiple-users-silhouette.svg'
+import icon from './mainicon.svg'
 import {fetchAuth, fetchCategories, fetchCompensations} from "../../actions";
 import {connect} from "react-redux";
 import {MainRouter} from "../../routes";

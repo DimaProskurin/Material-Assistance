@@ -37,7 +37,6 @@ class ValidatedStudent(models.Model):
 
 
 class Payment(models.Model):
-    payment_id = models.IntegerField(primary_key=True, unique=True, auto_created=True)
     student = models.ForeignKey('ValidatedStudent', related_name='compensation', on_delete=models.CASCADE)
     money = models.IntegerField()
     compensation_id = models.ForeignKey('Compensation', related_name='compensations', on_delete=models.CASCADE)
@@ -45,11 +44,3 @@ class Payment(models.Model):
 
     def __str__(self):
         return str(self.student)
-
-
-
-class WhiteListEmail(models.Model):
-    email = models.EmailField()
-
-    def __str__(self):
-        return self.email

@@ -22,7 +22,7 @@ export class MainRouter extends Component {
 
     componentDidMount() {
         getCategoriesFromDB().then((resp) => {
-            if (resp === "auth error" || resp === "whitelist error") {
+            if (resp === "auth error" || String(resp).startsWith("whitelist error")) {
                 this.setState({verdict: resp});
                 return;
             }
@@ -32,7 +32,7 @@ export class MainRouter extends Component {
 
         if (this.state.verdict === "ok") {
             getCompensations().then((resp) => {
-                if (resp === "auth error" || resp === "whitelist error") {
+                if (resp === "auth error" || String(resp).startsWith("whitelist error")) {
                     this.setState({verdict: resp});
                     return;
                 }
@@ -44,7 +44,7 @@ export class MainRouter extends Component {
 
         if (this.state.verdict === "ok") {
             getStudentData().then((resp) => {
-                if (resp === "auth error" || resp === "whitelist error") {
+                if (resp === "auth error" || String(resp).startsWith("whitelist error")) {
                     this.setState({verdict: resp});
                     return;
                 }
@@ -54,7 +54,7 @@ export class MainRouter extends Component {
 
         if (this.state.verdict === "ok") {
             getStudentHistory().then((resp) => {
-                if (resp === "auth error" || resp === "whitelist error") {
+                if (resp === "auth error" || String(resp).startsWith("whitelist error")) {
                     this.setState({verdict: resp});
                     return;
                 }
@@ -64,7 +64,7 @@ export class MainRouter extends Component {
     }
 
     render() {
-        if (this.state.verdict === "whitelist error" || this.state.verdict === "auth error") {
+        if (this.state.verdict.startsWith("whitelist error") || this.state.verdict === "auth error") {
             return (
                 <Switch>
                     <Route path={'/'}>

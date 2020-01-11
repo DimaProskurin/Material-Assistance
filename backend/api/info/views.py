@@ -18,7 +18,7 @@ def verdict(request):
         return "auth error"
 
     if len(ValidatedStudent.objects.filter(email=user.email)) == 0:
-        return "whitelist error"
+        return "whitelist error " + user.email
 
     return "ok"
 

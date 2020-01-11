@@ -1,6 +1,6 @@
 import cookie from "react-cookies";
 
-export const SITE_ADDRESS = 'https://project-fullstack2019.herokuapp.com';
+export const SITE_ADDRESS = 'https://material-assistance.herokuapp.com';
 
 export async function getCategoriesFromDB() {
     let response = await fetch(SITE_ADDRESS + '/api/categories/', {

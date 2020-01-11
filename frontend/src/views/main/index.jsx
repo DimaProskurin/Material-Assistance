@@ -23,8 +23,6 @@ export class App extends React.Component {
                                             description={ category.description } key={index}/>))
                             }
                         </div>
-                        <br/>
-                        <br/>
                     </header>
                 </div>
             );

@@ -2,8 +2,35 @@ import React from 'react'
 import '../compensation/styles.css'
 import PropTypes from 'prop-types';
 import {SITE_ADDRESS} from "../../../utils";
+import {connect} from "react-redux";
 
 export class InputBlock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            surnameField: "",
+            nameField: "",
+            middleNameField: "",
+            groupField: "",
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            surnameField: this.props.studentData['surname'],
+            nameField: this.props.studentData['name'],
+            middleNameField: this.props.studentData['middlename'],
+            groupField: this.props.studentData['group'],
+        });
+    }
+
+    handleChange(event) {
+        this.setState({
+            [event.target.id]: event.target.value
+        });
+    }
 
     render() {
         return (
@@ -15,22 +42,26 @@ export class InputBlock extends React.Component {
                     <div className="form-row">
                         <div className="form-group col-md-4">
                             <label>Фамилия</label>
-                            <input id={"surnameField"} type="text" className="form-control" placeholder="Фамилия"/>
+                            <input id={"surnameField"} type="text" className="form-control"
+                                   placeholder="Фамилия" value={this.state.surnameField} onChange={this.handleChange}/>
                         </div>
                         <div className="form-group col-md-4">
                             <label>Имя</label>
-                            <input id={"nameField"} type="text" className="form-control" placeholder="Имя"/>
+                            <input id={"nameField"} type="text" className="form-control"
+                                   placeholder="Имя" value={this.state.nameField} onChange={this.handleChange}/>
                         </div>
                         <div className="form-group col-md-4">
                             <label>Отчество</label>
-                            <input id={"middleNameField"} type="text" className="form-control" placeholder="Отчество" />
+                            <input id={"middleNameField"} type="text" className="form-control"
+                                   placeholder="Отчество" value={this.state.middleNameField} onChange={this.handleChange}/>
                         </div>
                     </div>
 
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label>Группа</label>
-                            <input id={"groupField"} type="text" className="form-control" placeholder="Группа"/>
+                            <input id={"groupField"} type="text" className="form-control"
+                                   placeholder="Группа" value={this.state.groupField} onChange={this.handleChange}/>
                         </div>
 
                         <div className="form-group col-md-6">
@@ -107,3 +138,13 @@ InputBlock.propTypes = {
 InputBlock.defaultProps = {
     compensationUrl: ""
 };
+
+let mapStateToProps = (state) => {
+    return {
+        studentData: state.fetch.studentData,
+    };
+};
+
+InputBlock = connect(mapStateToProps, undefined)(InputBlock);
+
+export default InputBlock;

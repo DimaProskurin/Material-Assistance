@@ -20,7 +20,6 @@ class CompensationSerializer(serializers.Serializer):
 
 
 class PaymentSerializer(serializers.Serializer):
-    payment_id = serializers.IntegerField()
     money = serializers.IntegerField()
     compensation_id = serializers.SlugRelatedField(read_only=True, slug_field='name')
     date = serializers.DateField()
