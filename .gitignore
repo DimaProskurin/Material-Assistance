@@ -5,12 +5,13 @@
 /backend/env
 /.pnp
 .pnp.js
-/backend/api/api/__pycache__
 
 # testing
 /coverage
 
 # misc
+.idea/
+__pycache__/
 .DS_Store
 .env.local
 .env.development.local
