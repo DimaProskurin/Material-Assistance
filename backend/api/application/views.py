@@ -1,8 +1,7 @@
-from rest_framework.response import Response
 from rest_framework.views import APIView
 from .myCreator import create
 import os
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 
 
 class ApplicationView(APIView):
